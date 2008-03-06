@@ -1,0 +1,13 @@
+The following installation notice is only supplemental and should only be used
+if the the setting in simonblinks.cfg and at the top of simonblinks.py are
+set appropriate.
+
+To install it, run the following command inside this directory:
+
+    python setup.py install
+
+Note that this application requires Python 2.3 or later, and a recent
+version of Pygame. You can obtain Python from http://www.python.org/ and
+Pygame from http://www.pygame.org/.
+
+Please have a look at the README for usage instructions.
