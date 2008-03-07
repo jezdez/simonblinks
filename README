@@ -92,10 +92,12 @@ The actual data that is converted to hex before sending is defined as a row
 of ``1`` (lamp is switched on) and ``0`` (lamp is switched off).
 
 .. _gameEngine libary: http://www.cs.iupui.edu/~aharris/n343/ch10/Readme.html
-.. _pyserial: http://pyserial.sf.net/
 
 Installation and usage
 ======================
+
+Please note that *Simon Blinks* **requires** Pygame_ and pyserial_ to be 
+installed!
 
 #. Download_ the source tarball (``tar.gz`` file) of *Simon Blinks* and unpack it
 #. Follow the instructions in the INSTALL file
@@ -105,6 +107,8 @@ Installation and usage
    (if you installed it by running ``python setup.py install``)
 
 .. _Download: http://code.google.com/p/simonblinks/downloads/list
+.. _pyserial: http://pyserial.sf.net/
+.. _Pygame: http://pygame.org
 
 Problems and bugs
 =================
