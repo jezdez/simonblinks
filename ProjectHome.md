@@ -1,0 +1,64 @@
+# Simon Blinks #
+### Playfulness in urban environments ###
+
+This is a simple game, a variant of [Simon/Senso](http://en.wikipedia.org/wiki/Simon_(game)) for two players, inspired heavily by the concept of [Blinkenlights](http://www.blinkenlights.de/index.en.html). The players use common dance mats (e.g. very cheap on eBay) to control the game. This Python based program contains the logic to operate _Simon Blinks_.
+
+The visual output is supposed to be shown on an array of windows, each window representing a real-life "pixel" of a display. This array of windows should have a size of 3 x 8 and utitlize a series of lamps, connected to a logic board with a serial interface. The logic board used to toggle the lamps in the windows.
+
+The schemetics of the windows should be:
+
+```
+    +-----------------------------------+
+    |                                   |
+    |  ... 111 ... xxx xxx ... 222 ...  |
+    |  ... 111 ... xxx xxx ... 222 ...  |
+    |                                   |
+    |  111 ... 111 xxx xxx 222 ... 222  |
+    |  111 ... 111 xxx xxx 222 ... 222  |
+    |                                   |
+    |  ... 111 ... xxx xxx ... 222 ...  |
+    |  ... 111 ... xxx xxx ... 222 ...  |
+    |                                   |
+    +-----------------------------------+
+```
+
+..where "1" stands for the windows controlled by player 1 and "2" for the windows controlled by player 2. The two center collumns ("x") will show the available "lives" each player has. Every window with "..." has no represantation at the controller (the dance mat).
+
+This game was created in the course [Physical Computing I](http://www.uni-weimar.de/qisserver/rds?state=wsearchv&search=2&veranstaltung.veranstid=366) at the [Interface Department](http://cineon02.medien.uni-weimar.de:8080/mywiki) of the faculty of media, Bauhaus-University Weimar (Germany), mentored by Dipl.-Ing. Jan M. Sieber.
+
+Most of the code was written by [Jannis Leidel](http://jannisleidel.com/), student of Media Design (BfA) at Bauhaus-University Weimar.
+
+## Rules of the game ##
+
+_Simon Blinks_ should be played in the dark.
+
+When a new game is started each player has three lives. The two center window collumns visualize the life counter of the two players - the left collumn for player 1, the right collumn for player 2. As soon as a player looses a life, the light of one window of the center window collumn will be switched off automatically.
+
+A player looses a life if he makes an error during the game. The player that lost all his lives looses the game and a new game is started.
+
+During the game both players will see light sequences in their windows. Every window of their window array is represented by one field of the dance mats they are supposed to be standing on. When a light sequence is finished all windows will blink to signal the players to repeat the sequence by "dancing" on the dance mats. Every push of a dance mat field sends a signal to the game computer and saves the guess to a list. If the guesses of each player match the light sequences shown before the game is initializing the next level.
+
+When a new level is started one new random item is added to the light sequence making the game virtually endless, as long the players remember the sequence.
+
+## Used technology ##
+
+This game largely uses Pygame for some parts of the game logic, especially for the event system, joystick handling and graphical output. It also uses the [gameEngine libary](http://www.cs.iupui.edu/~aharris/n343/ch10/Readme.html) to prevent reinventing the wheel.
+
+Every command to the light controller board is sent as serial data with the help of the [pyserial](http://pyserial.sf.net/) library.
+
+It uses hex values for each row of windows even if there is no need to have them switched. That means this game transmits the commands for all lights at once to make programming the controller board as easy as possible.
+
+The actual data that is converted to hex before sending is defined as a row of `1` (lamp is switched on) and `0` (lamp is switched off).
+
+## Installation and usage ##
+
+  1. [Download](http://code.google.com/p/simonblinks/downloads/list) the source tarball (`tar.gz` file) of _Simon Blinks_ and unpack it
+  1. Follow the instructions in the INSTALL file
+  1. Edit the simonblinks.cfg to show the game which serial connection to use
+  1. Start the game by running `simonblinks.py` either from the `simonblinks/` directory or from the system-wide installation directory (if you installed it by running `python setup.py install`)
+
+## Problems and bugs ##
+
+If you have problems installing or using _Simon Blinks_ or have found bugs in the code, please leave a messages on the designated Google Code site:
+
+[http://code.google.com/p/simonblinks/issues/list](http://code.google.com/p/simonblinks/issues/list)
